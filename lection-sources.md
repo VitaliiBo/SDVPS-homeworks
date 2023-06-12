@@ -25,3 +25,9 @@ https://github.com/sitewards/helm-chart
 
 https://yandex.ru/search/?text=terraform+workspace&clid=2411726&lr=10735
 
+
+## Terraform
+
+Yandex-Cloud install 
+
+https://cloud.yandex.ru/docs/tutorials/infrastructure-management/terraform-quickstart
