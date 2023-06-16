@@ -234,4 +234,4 @@ And HOSTNAME is {{ ansible_hostname }}
 
 Скрин браузера
 
-![](./homework-7.2/image-04.jpg)git 
+![](./homework-7.2/image-04.jpg)
