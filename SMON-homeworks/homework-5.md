@@ -20,6 +20,8 @@
 
 ![](./homework-5/image-02.jpg)
 
+![](./homework-5/image-06.jpg)
+
 ### Задание 3
 
 Активируйте экспортёр метрик в Docker и подключите его к Prometheus.
