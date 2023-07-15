@@ -1,0 +1,41 @@
+#Установка Node-Exporter для Prometheus
+
+wget https://github.com/prometheus/node_exporter/releases/download/v1.6.0/node_exporter-1.6.0.linux-amd64.tar.gz
+
+tar xvfz node_exporter-*.*-amd64.tar.gz
+
+cd node_exporter-*.*-amd64
+
+./node_exporte
+
+mkdir /etc/prometheus/node-exporter
+cp ./* /etc/prometheus/node-exporter
+
+chown -R prometheus:prometheus /etc/prometheus/node-exporter/
+
+nano /etc/systemd/system/node-exporter.service
+
+[Unit]
+Description=Node Exporter Lesson 9.4
+After=network.target
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/etc/prometheus/node-exporter/node_exporter
+[Install]
+WantedBy=multi-user.target
+
+#Отредактируйте конфигурацию Prometheus:
+#Добавьте в scrape_config адрес экспортёра:
+#Перезапустите Prometheus:
+
+nano /etc/prometheus/prometheus.yml
+
+scrape_configs:
+— job_name: 'prometheus'
+scrape_interval: 5s
+static_configs:
+— targets: ['localhost:9090', 'localhost:9100']  #Добавить нужно только второй таргет
+
+systemctl restart prometheus
