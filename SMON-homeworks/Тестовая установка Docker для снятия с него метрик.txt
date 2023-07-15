@@ -1,0 +1,50 @@
+#!/bin/bash
+#Установка Docker и включения на нём метрик
+
+sudo apt-get update
+
+sudo apt-get install ca-certificates curl gnupg lsb-release -y
+
+sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bullseye stable" > /etc/apt/sources.list.d/docker.list
+
+sudo apt update
+
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+sudo docker run hello-world
+
+
+sudo systemctl enable docker
+
+sudo systemctl start docker
+
+sudo systemctl status docker
+
+
+sudo nano /etc/docker/daemon.json
+
+
+{
+  "metrics-addr" : "0.0.0.0:9323",
+  "experimental" : true
+}
+
+sudo systemctl restart docker && systemctl status docker
+
+#Для проверки можно открыть адрес http://server_ip:port/metrics
+
+#Чтобы поставить только что организованный эндпоинт
+#на мониторинг, необходимо отредактировать файл
+#prometheus.yml:
+
+sudo nano /etc/prometheus/prometheus.yml
+
+static_configs:
+- targets: ['localhost:9090', 'localhost:9100', 'server_ip:9323'] #Последняя запись
+
+sudo systemctl restart prometheus
+sudo systemctl status prometheus

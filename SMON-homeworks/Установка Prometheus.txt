@@ -1,3 +1,4 @@
+#!/bin/bash
 #Установка PROMETHEUS
 
 useradd --no-create-home --shell /bin/false prometheus
