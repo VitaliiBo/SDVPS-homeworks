@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "yandex" {
-  token = "y0_AgAAAAAA6WJqAATuwQAAAADlpJbLsOmVNBV_Q_epoc4oeGg63SseM5E"
+  token = var.ya_token
 #  token = "${file("yandex.token")}"
   cloud_id = "b1g6lqgummp0f6chmuj5"
   folder_id = "b1g314opt7d3ef23cdo5"
