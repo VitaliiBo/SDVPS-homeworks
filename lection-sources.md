@@ -31,3 +31,10 @@ https://yandex.ru/search/?text=terraform+workspace&clid=2411726&lr=10735
 Yandex-Cloud install 
 
 https://cloud.yandex.ru/docs/tutorials/infrastructure-management/terraform-quickstart
+
+
+## Разборный по отказоустойчивости
+
+https://it-lux.ru/nginx-pacemaker-corosync/
+
+https://wiki.astralinux.ru/pages/viewpage.action?pageId=1212427
