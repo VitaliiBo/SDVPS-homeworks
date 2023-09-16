@@ -29,7 +29,7 @@ from
     payment
 where
     payment_date >= '2005-06-15'
-    AND payment_date <= '2005-06-18'
+    AND payment_date <= '2005-06-18 23:59:59'
     AND amount > '10';
 ```
 
