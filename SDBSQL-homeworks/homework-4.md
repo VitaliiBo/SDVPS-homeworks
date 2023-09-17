@@ -6,6 +6,7 @@
 - фамилия и имя сотрудника из этого магазина;
 - город нахождения магазина;
 - количество пользователей, закреплённых в этом магазине.
+<details><summary>slowest version</summary>
 
 ```sql
 SELECT
@@ -42,6 +43,19 @@ FROM
             count > 300
     ) ct ON ct.store_id = staff.store_id;
 ```
+</details>
+Доработка
+
+```sql
+SELECT CONCAT(staff.first_name, ' ', staff.last_name) as name, city as store_city ,count(customer.store_id) customers_count
+FROM customer
+JOIN staff ON staff.store_id=customer.store_id
+JOIN store s ON s.store_id=staff.store_id
+JOIN address a ON a.address_id=s.address_id
+JOIN city c ON c.city_id=a.city_id
+GROUP BY name, city
+HAVING customers_count > 300;
+```
 
 ### Задание 2
 
@@ -65,16 +79,19 @@ where
 
 Получите информацию, за какой месяц была получена наибольшая сумма платежей, и добавьте информацию по количеству аренд за этот месяц.
 
+Доработка
 
 ```sql
 select
-    month (payment_date) as month,
+    DATE_FORMAT(payment_date, "%M %Y") as month,
     sum(amount) as total_value,
-    count(month (payment_date)) as count
+    count(DATE_FORMAT(payment_date, "%M %Y")) as count
 from
     payment
 group by
-    month;
+    month
+ORDER BY
+    total_value DESC;
 ```
 
 

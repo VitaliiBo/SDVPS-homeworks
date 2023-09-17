@@ -1,0 +1,40 @@
++------------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field            | Type              | Null | Key | Default           | Extra                                         |
++------------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| store_id         | tinyint unsigned  | NO   | PRI | NULL              | auto_increment                                |
+| manager_staff_id | tinyint unsigned  | NO   | UNI | NULL              |                                               |
+| address_id       | smallint unsigned | NO   | MUL | NULL              |                                               |
+| last_update      | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++------------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+
+mysql> show columns from staff;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| staff_id    | tinyint unsigned  | NO   | PRI | NULL              | auto_increment                                |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   |     | NULL              |                                               |
+| address_id  | smallint unsigned | NO   | MUL | NULL              |                                               |
+| picture     | blob              | YES  |     | NULL              |                                               |
+| email       | varchar(50)       | YES  |     | NULL              |                                               |
+| store_id    | tinyint unsigned  | NO   | MUL | NULL              |                                               |
+| active      | tinyint(1)        | NO   |     | 1                 |                                               |
+| username    | varchar(16)       | NO   |     | NULL              |                                               |
+| password    | varchar(40)       | YES  |     | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+
+mysql> show columns from address;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| address_id  | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| address     | varchar(50)       | NO   |     | NULL              |                                               |
+| address2    | varchar(50)       | YES  |     | NULL              |                                               |
+| district    | varchar(20)       | NO   |     | NULL              |                                               |
+| city_id     | smallint unsigned | NO   | MUL | NULL              |                                               |
+| postal_code | varchar(10)       | YES  |     | NULL              |                                               |
+| phone       | varchar(20)       | NO   |     | NULL              |                                               |
+| location    | geometry          | NO   | MUL | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+

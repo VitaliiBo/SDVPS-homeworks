@@ -1,0 +1,98 @@
+SELECT DISTINCT Manufacturer FROM Products;
+
+"SELECT * FROM products WHERE prod_name LIKE 'A%'"
+
+SELECT * FROM таблица WHERE дата >= '2021-01-01';
+
+
+SELECT * FROM (SELECT * FROM table ORDER BY id DESC LIMIT 50) AS sub ORDER BY id ASC;
+
+Select Substring(email, 1,Charindex('@', email)-1) as email;
+
+select CONCAT(UCASE(MID(email_name,1,1)),LCASE(MID(email_name,2))) as email_name, CONCAT(UCASE(MID(domain,1,1)),LCASE(MID(domain,2))) as domain FROM (Select SUBSTRING_INDEX(email,'@',1) as email_name ,SUBSTRING_INDEX(email,'@',-1) as domain from customer) as sub;
+
+
+Магазин с 300+ клиентами
+select store_id, count as customers_count from (select store_id, count(*) as count from customer group by store_id order by count desc)as sub where count > 300;
+
+SELECT CONCAT(first_name, ' ', last_name) as name, address , customers_count
+FROM staff
+JOIN (select store_id, address from store INNER JOIN address ON address.address_id=store.address_id) st ON st.store_id = staff.store_id
+JOIN (select store_id, count as customers_count from (select store_id, count(*) as count from customer group by store_id order by count desc)as sub where count > 300) ct
+ON ct.store_id = staff.store_id;
+
+select * from store INNER JOIN address ON address.address_id=store.address_id;
+
+
+select month(rental_date) as month, count(rental_id) as count from rental group by month;
+
+select month(payment_date) as month, sum(amount) as total_value from payment group by month;
+
+SELECT title
+FROM film
+LEFT OUTER JOIN rental
+  ON rental.inventory_id = film.inventory_id
+  WHERE rental.rental_id IS NULL;
+
+SELECT film_id , rental_id
+FROM inventory
+LEFT OUTER JOIN rental
+  ON rental.inventory_id = inventory.inventory_id
+  WHERE rental.rental_id IS NULL;
+
+SELECT title
+FROM inventory
+LEFT OUTER JOIN rental
+  ON rental.inventory_id = inventory.inventory_id
+JOIN film
+  ON film.film_id = inventory.film_id
+WHERE rental.rental_id IS NULL;
+
+
+
+SELECT CONCAT(staff.first_name, ' ', staff.last_name) as name, city as store_city ,count(customer.store_id) customers_count
+FROM customer
+JOIN staff ON staff.store_id=customer.store_id
+JOIN store s ON s.store_id=staff.store_id
+JOIN address a ON a.address_id=s.address_id
+JOIN city c ON c.city_id=a.city_id
+GROUP BY name, city
+HAVING customers_count > 300;
+
+
+
+
+
+
+select
+    DATE_FORMAT(payment_date, "%M %Y") as month,
+    sum(amount) as total_value,
+    count(DATE_FORMAT(payment_date, "%M %Y")) as count
+from
+    payment
+group by
+    month
+ORDER BY
+    total_value DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
