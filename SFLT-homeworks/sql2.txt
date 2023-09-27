@@ -38,3 +38,18 @@ mysql> show columns from address;
 | location    | geometry          | NO   | MUL | NULL              |                                               |
 | last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
 +-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+
+mysql> show columns from customer;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| customer_id | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| store_id    | tinyint unsigned  | NO   | MUL | NULL              |                                               |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   | MUL | NULL              |                                               |
+| email       | varchar(50)       | YES  |     | NULL              |                                               |
+| address_id  | smallint unsigned | NO   | MUL | NULL              |                                               |
+| active      | tinyint(1)        | NO   |     | 1                 |                                               |
+| create_date | datetime          | NO   |     | NULL              |                                               |
+| last_update | timestamp         | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+

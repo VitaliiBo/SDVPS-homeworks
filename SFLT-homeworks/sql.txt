@@ -79,7 +79,10 @@ ORDER BY
 
 
 
-
+SELECT 
+    ROUND(SUM(data_length + index_length) / (SELECT SUM(data_length) FROM information_schema.tables WHERE table_schema = 'sakila') * 100, 2) AS "Процентное отношение"
+FROM information_schema.tables
+WHERE table_schema = 'sakila';
 
 
 
